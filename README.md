@@ -68,3 +68,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Algorithms and Outlines
+
+Below is our list of algorithms from trello and their tl;dr - claim the one you want!
+
+## BFS / DFS
+
+Two sides of the same coin -
+
+DFS: arbitrarily pick nodes around the start node that we haven't visited before, rinse and repeat. The idea is to NOT pick nodes that we've visited, in order to keep going deeper into the path, blindly. If we reach a spot with no available nodes, we start over (?)
+
+BFS: In this case we're not really exploring a path, but the nodes immediately around the start. In order of how many steps they are away from the start, we check each available node, blindly.
+
+## Djikstra's
+
+Simplest 'decision making' algorithm by picking the next, lowest cost node available until the destination is reached
+
+## A*
+
+A more complicated 'best first' search that utilizes Djikstra's but adds an additional layer - in the cost analysis of a node, we also consider how far the node is from the start. The variance between A* implementations is the heuristic - the cost estimator.
+
+## D*
+
+There are multiple versions of this, but all of them are incremental heuristic searches. One main difference is that D* starts from the goal node and searches backwards. Additionally, nodes can have their cost increased if they are near obstacles encountered.
+
+## XYZ Open Algorithm
