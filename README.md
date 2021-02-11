@@ -95,3 +95,23 @@ A more complicated 'best first' search that utilizes Djikstra's but adds an addi
 There are multiple versions of this, but all of them are incremental heuristic searches. One main difference is that D* starts from the goal node and searches backwards. Additionally, nodes can have their cost increased if they are near obstacles encountered.
 
 ## XYZ Open Algorithm
+
+
+# Outline for Use
+
+## One Page Application
+
+Ideally, we can fit all of our application onto one page. The page will show (at least) four grids with a path that was calculated by (at least) four different algorithms.
+
+## Showcase of Each Algorithm
+
+Each algorithm will (hopefully) show all start, end, chosen, considered, and blocked nodes in its grid. This helps get a better view of the algorithm as a whole.
+Additionally, we will include metrics on algorithm performance like run time, steps taken, etc.
+
+## Potential Areas for Interaction
+
+We have a couple options for interaction on the front end once the algorithms are built.
+
+For one, we can place a multitude of algorithms onto the same grid or path by the click of each button. For example, clicking 'A*' would show that algorithm's path, and clicking 'BFS' would overlay its own path onto the same grid. 
+
+For a different option, we could allow users to place blockades within the four grids or modify the start and end locations.
