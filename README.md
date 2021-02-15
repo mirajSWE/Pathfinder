@@ -101,17 +101,14 @@ There are multiple versions of this, but all of them are incremental heuristic s
 
 ## One Page Application
 
-Ideally, we can fit all of our application onto one page. The page will show (at least) four grids with a path that was calculated by (at least) four different algorithms.
+Ideally, we can fit all of our application onto one page. The page will show a grid with boxes in it that represent different real-world things. For example, a box may show green and that indicates the starting point - red, the ending point. A box may show as gray or black to represent an obstacle, or blue as a considered node.
 
 ## Showcase of Each Algorithm
 
-Each algorithm will (hopefully) show all start, end, chosen, considered, and blocked nodes in its grid. This helps get a better view of the algorithm as a whole.
-Additionally, we will include metrics on algorithm performance like run time, steps taken, etc.
+Each algorithm will identify its fastest path that it found. Additionally, we could include metrics on algorithm performance like run time, steps taken, etc.
 
 ## Potential Areas for Interaction
 
-We have a couple options for interaction on the front end once the algorithms are built.
+We have a couple options for interaction on the front end once the algorithms are built. For one, the user can pick which algorithm they want to see. They could also pick an option to showcase each step by X-Y coordinate that the algorithm chose, as sometimes it's not readily apparent. We will also include a glossary of each block's color that the user could click on to show or hide.
 
-For one, we can place a multitude of algorithms onto the same grid or path by the click of each button. For example, clicking 'A*' would show that algorithm's path, and clicking 'BFS' would overlay its own path onto the same grid. 
-
-For a different option, we could allow users to place blockades within the four grids or modify the start and end locations.
+There are also some options that are outside the starting scope that we will add if we have time, like placing multiple algorithms onto the same grid to directly compare performance. As another option, we could allow users to place blockades and update the grid in real-time.
