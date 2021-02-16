@@ -8,6 +8,11 @@ In the project directory, you can run:
 
 ### `npm start`
 
+Before running `npm start` insure you have run the following:
+
+- `npm install --save aphrodite`
+- `npm install simple-flexbox`
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -69,7 +74,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
 # Algorithms and Outlines
 
 Below is our list of algorithms from trello and their tl;dr - claim the one you want!
@@ -86,16 +90,15 @@ BFS: In this case we're not really exploring a path, but the nodes immediately a
 
 Simplest 'decision making' algorithm by picking the next, lowest cost node available until the destination is reached
 
-## A*
+## A\*
 
-A more complicated 'best first' search that utilizes Djikstra's but adds an additional layer - in the cost analysis of a node, we also consider how far the node is from the start. The variance between A* implementations is the heuristic - the cost estimator.
+A more complicated 'best first' search that utilizes Djikstra's but adds an additional layer - in the cost analysis of a node, we also consider how far the node is from the start. The variance between A\* implementations is the heuristic - the cost estimator.
 
-## D*
+## D\*
 
-There are multiple versions of this, but all of them are incremental heuristic searches. One main difference is that D* starts from the goal node and searches backwards. Additionally, nodes can have their cost increased if they are near obstacles encountered.
+There are multiple versions of this, but all of them are incremental heuristic searches. One main difference is that D\* starts from the goal node and searches backwards. Additionally, nodes can have their cost increased if they are near obstacles encountered.
 
 ## XYZ Open Algorithm
-
 
 # Outline for Use
 
