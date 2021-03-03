@@ -1,4 +1,4 @@
-import Node from 'src/NodeTools/Node.js';
+import React from 'react'
 
 class DStar {
     constructor(startNode, endNode, nodeList) {
@@ -7,12 +7,13 @@ class DStar {
         this.nodeList = nodeList;
         this.stepList = undefined;
         this.runTime = undefined;
+
+        this.openList = [];
     }
 
-    startAlgorithm() {
-        const startX = this.startNode.xPos;
-        const startY = this.startNode.yPos;
+    runAlgorithm() {
+        this.openList.add(this.startNode);
 
-
+        console.log(this.openList);
     }
 }

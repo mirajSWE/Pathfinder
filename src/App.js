@@ -21,10 +21,38 @@ const styles = StyleSheet.create({
 
 class App extends React.Component {
 
-    state = { selectedItem: 'Tickets' };
+    node(x, y, status) {
+        const node = {
+            x: x,
+            y: y,
+            status: status,
+        }
+        return node;
+    }
+
+    populateGraph(xSize, ySize) {
+        const graph = [];
+
+        for (let index = 0; index < xSize; index++) {
+            graph[index] = [];
+        }
+
+        for (let xInd = 0; xInd < xSize; xInd++) {
+            for (let yInd = 0; yInd < ySize; yInd++) {
+                graph[xInd][yInd] = this.node(xInd, yInd, 4);
+            }
+        }
+        return graph;
+    }
+
+    state = {
+        selectedItem: 'Tickets',
+        graph: this.populateGraph(10, 10),
+    };
 
     render() {
-        const { selectedItem } = this.state;
+        const { selectedItem, graph} = this.state;
+        console.log(graph);
         return (
             <Row className={css(styles.container)}>
                 <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
