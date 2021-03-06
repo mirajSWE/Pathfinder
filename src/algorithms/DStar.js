@@ -12,7 +12,7 @@ class DStar {
     }
 
     runAlgorithm() {
-        this.openList.add(this.startNode);
+        this.openList.push(this.startNode);
 
         console.log(this.openList);
     }

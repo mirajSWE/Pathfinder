@@ -78,7 +78,8 @@ class App extends React.Component {
         const { selectedItem, graph} = this.state;
 
         this.setNodeStatus(5, 5, 4);
-        DStar.runAlgorithm();
+        const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
+        dStarAlgo.runAlgorithm();
 
         return (
             <Row className={css(styles.container)}>
