@@ -15,10 +15,13 @@ class DStar {
         this.openList.push(this.startNode);
 
         console.log(this.openList);
+
+        this.updateDStarNode(this.graph[2][2], 4);
+
     }
 
     updateDStarNode(node, newStatus) {
-
+        node.status = newStatus;
     }
 
 }
