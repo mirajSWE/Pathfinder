@@ -8,18 +8,36 @@ function GraphComponent(props) {
     // const xSize = graph.length;
     // const ySize = graph[0].length;
     console.log(graph);
-
     return (
-        graph.map((innerArray) => {
-            <Row>
-                {innerArray.map((node) => {
-                    <Column>
-                        <NodeComponent status={node.status} />
-                    </Column>
-                })}
-            </Row>
-        })
+        <div>
+            {graph.map((innerArray) => {
+                return (
+                    <Row>
+                        {innerArray.map((node) => {
+                            return (
+                                <Column style= {{ width: 50, height: 50 }}>
+                                    <NodeComponent status= { node.status } />
+                                </Column>
+                            )
+                        })}
+                    </Row>
+                )
+            })}
+        </div>
     );
+    // return (
+    //     graph.map((innerArray) => {
+    //         return
+    //         <Row>
+    //             {innerArray.map((node) => {
+    //                 return
+    //                 <Column>
+    //                      <text>test</text>
+    //                 </Column>
+    //             })}
+    //         </Row>
+    //     })
+    // );
 }
 
 export default GraphComponent;

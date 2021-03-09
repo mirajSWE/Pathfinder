@@ -33,6 +33,8 @@ class App extends React.Component {
      * status = 2 means it is an open, already considered node
      * status = 3 means it is a node taken for the path
      * status = 4 means it is a blockade
+     * status = 5 means it is a start block
+     * status = 6 means it is an end block
      * @returns {{x: *, y: *, status: *}}
      */
     node(x, y, status) {
@@ -78,6 +80,8 @@ class App extends React.Component {
         const { selectedItem, graph} = this.state;
 
         this.setNodeStatus(5, 5, 4);
+        this.setNodeStatus(0, 0, 5);
+        this.setNodeStatus(9, 9, 6);
         const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
         dStarAlgo.runAlgorithm();
 
@@ -86,13 +90,12 @@ class App extends React.Component {
                 <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
                 <Column flexGrow={1} className={css(styles.mainBlock)}>
                     <HeaderComponent title={selectedItem} />
-                    <div className={css(styles.content)}>
-                        <span>Graph</span>
-                        <NodeComponent status={1} />
-                        <NodeComponent status={2} />
-                        <NodeComponent status={3} />
-                        <NodeComponent status={4} />
-                    </div>
+                    {/*<div className={css(styles.content)}>*/}
+                    {/*    <NodeComponent status={1} />*/}
+                    {/*    <NodeComponent status={2} />*/}
+                    {/*    <NodeComponent status={3} />*/}
+                    {/*    <NodeComponent status={4} />*/}
+                    {/*</div>*/}
                     <div>
                         <GraphComponent graph={graph}/>
                     </div>

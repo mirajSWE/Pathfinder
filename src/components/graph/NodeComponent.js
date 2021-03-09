@@ -13,6 +13,10 @@ function NodeComponent(props) {
         color = '#08730A'
     } else if (props.status === 4) {
         color = '#000000'
+    } else if (props.status === 5) {
+        color = '#B00CCC'
+    } else if (props.status === 6) {
+        color = '#160CCC'
     }
     return (
         <svg>
