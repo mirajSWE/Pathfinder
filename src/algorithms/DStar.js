@@ -18,6 +18,7 @@ class DStar {
             dStatus: dStatus,
             dCost: dCost,
             backTrackPointer: backTrackPointer,
+            neighborList: [],
         }
         return dStarNode;
     }

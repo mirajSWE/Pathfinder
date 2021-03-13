@@ -2,7 +2,6 @@ import React from 'react';
 import NodeComponent from "./NodeComponent";
 import { Column, Row } from 'simple-flexbox';
 
-
 function GraphComponent(props) {
     const { graph, ...otherProps } = props;
     // const xSize = graph.length;
