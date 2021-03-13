@@ -7,7 +7,6 @@ function GraphComponent(props) {
     const { graph, ...otherProps } = props;
     // const xSize = graph.length;
     // const ySize = graph[0].length;
-    console.log(graph);
     return (
         <div>
             {graph.map((innerArray) => {

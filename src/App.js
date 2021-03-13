@@ -80,6 +80,10 @@ class App extends React.Component {
         const { selectedItem, graph} = this.state;
 
         this.setNodeStatus(5, 5, 4);
+        this.setNodeStatus(5, 4, 4);
+        this.setNodeStatus(5, 3, 4);
+        this.setNodeStatus(5, 7, 4);
+        // this.setNodeStatus(5, 6, 4);
         this.setNodeStatus(0, 0, 5);
         this.setNodeStatus(9, 9, 6);
         const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
@@ -90,12 +94,6 @@ class App extends React.Component {
                 <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
                 <Column flexGrow={1} className={css(styles.mainBlock)}>
                     <HeaderComponent title={selectedItem} />
-                    {/*<div className={css(styles.content)}>*/}
-                    {/*    <NodeComponent status={1} />*/}
-                    {/*    <NodeComponent status={2} />*/}
-                    {/*    <NodeComponent status={3} />*/}
-                    {/*    <NodeComponent status={4} />*/}
-                    {/*</div>*/}
                     <div>
                         <GraphComponent graph={graph}/>
                     </div>
