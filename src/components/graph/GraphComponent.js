@@ -14,7 +14,7 @@ function GraphComponent(props) {
                         {innerArray.map((node) => {
                             return (
                                 <Column style= {{ width: 50, height: 50 }}>
-                                    <NodeComponent status= { node.status } />
+                                    <NodeComponent status= { node.status} stepNumber={node.stepNumber} cost={node.cost}/>
                                 </Column>
                             )
                         })}

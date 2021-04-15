@@ -6,6 +6,7 @@ import HeaderComponent from './components/header/HeaderComponent';
 import NodeComponent from "./components/graph/NodeComponent";
 import './App.css';
 import DStar from './algorithms/DStar';
+import AStar from "./algorithms/AStar";
 import GraphComponent from "./components/graph/GraphComponent";
 
 const styles = StyleSheet.create({
@@ -37,11 +38,13 @@ class App extends React.Component {
      * status = 6 means it is an end block
      * @returns {{x: *, y: *, status: *}}
      */
-    node(x, y, status) {
+    node(x, y, status, stepNumber, cost) {
         const node = {
             x: x,
             y: y,
             status: status,
+            stepNumber: stepNumber,
+            cost: cost,
         }
         return node;
     }
@@ -55,7 +58,7 @@ class App extends React.Component {
 
         for (let xInd = 0; xInd < xSize; xInd++) {
             for (let yInd = 0; yInd < ySize; yInd++) {
-                graph[xInd][yInd] = this.node(xInd, yInd, 1);
+                graph[xInd][yInd] = this.node(xInd, yInd, 1, 0);
             }
         }
         return graph;
@@ -79,6 +82,7 @@ class App extends React.Component {
     render() {
         const { selectedItem, graph} = this.state;
 
+        // Set blockade nodes
         this.setNodeStatus(5, 5, 4);
         this.setNodeStatus(5, 4, 4);
         this.setNodeStatus(5, 3, 4);
@@ -86,8 +90,10 @@ class App extends React.Component {
         // this.setNodeStatus(5, 6, 4);
         this.setNodeStatus(0, 0, 5);
         this.setNodeStatus(9, 9, 6);
-        const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
-        dStarAlgo.runAlgorithm();
+        // const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
+        // dStarAlgo.runAlgorithm();
+        const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
+        aStarAlgo.runAlgorithm();
 
         return (
             <Row className={css(styles.container)}>
