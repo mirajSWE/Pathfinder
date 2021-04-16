@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Column, Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 import SidebarComponent from './components/sidebar/SidebarComponent';
 import HeaderComponent from './components/header/HeaderComponent';
-import NodeComponent from "./components/graph/NodeComponent";
 import './App.css';
-import DStar from './algorithms/DStar';
-import AStar from "./algorithms/AStar";
 import GraphComponent from "./components/graph/GraphComponent";
+import AlgorithmRunComponent from "./components/graph/AlgorithmRunComponent";
 
 const styles = StyleSheet.create({
     container: {
@@ -24,6 +22,14 @@ const styles = StyleSheet.create({
 
 
 class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedItem: 'Step by Step',
+            graph: this.populateGraph(10, 10),
+        }
+    }
 
     /**
      *
@@ -74,13 +80,36 @@ class App extends React.Component {
         return graph[xIndex][yIndex].status;
     }
 
-    state = {
-        selectedItem: 'Tickets',
-        graph: this.populateGraph(10, 10),
-    };
+    // toggleNodeBlockade(node) {
+    //     console.log(node);
+    //
+    //     if (node.status === 4) {
+    //         node.status = 1;
+    //         // RUN ALGORITHM AGAIN? OR WILL IT RE RENDER
+    //     } else {
+    //         node.status = 4;
+    //     }
+    // }
+
+    // runAlgorithm(stringAlgo) {
+    //     const {graph} = this.state;
+    //     let runTime = 0;
+    //     if (stringAlgo === 'AStar') {
+    //         const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
+    //         runTime = aStarAlgo.runAlgorithm();
+    //         this.setState({
+    //             runTime: runTime,
+    //         });
+    //         this.forceUpdate();
+    //     }
+    //     // const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
+    //
+    //     return runTime;
+    // }
 
     render() {
-        const { selectedItem, graph} = this.state;
+        const { selectedItem, graph, algorithmToRun } = this.state;
+        console.log(algorithmToRun);
 
         // Set blockade nodes
         this.setNodeStatus(5, 5, 4);
@@ -92,16 +121,36 @@ class App extends React.Component {
         this.setNodeStatus(9, 9, 6);
         // const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
         // dStarAlgo.runAlgorithm();
-        const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
-        aStarAlgo.runAlgorithm();
+        // const runTime = this.runAlgorithm();
 
         return (
             <Row className={css(styles.container)}>
                 <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
                 <Column flexGrow={1} className={css(styles.mainBlock)}>
                     <HeaderComponent title={selectedItem} />
+                    <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun}/>
                     <div>
-                        <GraphComponent graph={graph}/>
+                        <button onClick={() =>
+                            this.setState({
+                                algorithmToRun: 'AStar'
+                            })
+                        }>
+                            AStar
+                        </button>
+                        <button onClick={() =>
+                            this.setState({
+                                algorithmToRun: 'DStar'
+                            })
+                        }>
+                            DStar
+                        </button>
+                        <button onClick={() =>
+                            this.setState({
+                                algorithmToRun: null
+                            })
+                        }>
+                            Clear
+                        </button>
                     </div>
                 </Column>
             </Row>
