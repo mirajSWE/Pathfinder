@@ -112,13 +112,13 @@ class App extends React.Component {
         console.log(algorithmToRun);
 
         // Set blockade nodes
-        this.setNodeStatus(5, 5, 4);
-        this.setNodeStatus(5, 4, 4);
-        this.setNodeStatus(5, 3, 4);
-        this.setNodeStatus(5, 7, 4);
-        // this.setNodeStatus(5, 6, 4);
-        this.setNodeStatus(0, 0, 5);
-        this.setNodeStatus(9, 9, 6);
+        // this.setNodeStatus(5, 5, 4);
+        // this.setNodeStatus(5, 4, 4);
+        // this.setNodeStatus(5, 3, 4);
+        // this.setNodeStatus(5, 7, 4);
+        // // this.setNodeStatus(5, 6, 4);
+        // this.setNodeStatus(0, 0, 5);
+        // this.setNodeStatus(9, 9, 6);
         // const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
         // dStarAlgo.runAlgorithm();
         // const runTime = this.runAlgorithm();

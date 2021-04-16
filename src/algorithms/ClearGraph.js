@@ -1,18 +1,20 @@
 import React from 'react'
 
 class ClearGraph {
-    constructor(graph) {
+    constructor(startNode, endNode, graph) {
+        this.startNode = startNode;
+        this.endNode = endNode;
         this.generalGraph = graph;
     }
 
     clearGraph() {
-        console.log('here!');
         this.generalGraph.forEach((row) => {
             row.forEach((node) => {
-                console.log(node);
                 this.updateGeneralNode(node, 1);
             });
         });
+        this.updateGeneralNode(this.startNode, 5);
+        this.updateGeneralNode(this.endNode, 6);
     }
 
     /**

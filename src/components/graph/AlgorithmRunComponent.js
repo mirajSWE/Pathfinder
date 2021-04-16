@@ -5,10 +5,10 @@ import AStar from "../../algorithms/AStar";
 import DStar from "../../algorithms/DStar";
 import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
-    console.log(props);
-    console.log(props.algorithmToRun);
+
     const [graph, setGraph] = useState(props.graph);
-    console.log(graph);
+    // const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
+    // clearGraph.clearGraph();
     let runtime = 0;
     if (props.algorithmToRun === 'AStar') {
         const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
@@ -19,8 +19,7 @@ function AlgorithmRunComponent(props) {
         runtime = dStarAlgo.runAlgorithm();
     }
     if (!props.algorithmToRun) {
-        console.log('test');
-        const clearGraph = new ClearGraph(graph);
+        const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
         clearGraph.clearGraph();
         runtime = 0;
     }
