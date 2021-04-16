@@ -10,11 +10,13 @@ class ClearGraph {
     clearGraph() {
         this.generalGraph.forEach((row) => {
             row.forEach((node) => {
-                this.updateGeneralNode(node, 1);
+                this.updateGeneralNodeStatus(node, 1);
             });
         });
-        this.updateGeneralNode(this.startNode, 5);
-        this.updateGeneralNode(this.endNode, 6);
+        this.updateGeneralNodeStatus(this.startNode, 5);
+        this.updateGeneralNodeStepNumber(this.startNode);
+        this.updateGeneralNodeStepNumber(this.endNode);
+        this.updateGeneralNodeStatus(this.endNode, 6);
     }
 
     /**
@@ -22,8 +24,12 @@ class ClearGraph {
      * @param node
      * @param newStatus
      */
-    updateGeneralNode(node, newStatus) {
+    updateGeneralNodeStatus(node, newStatus) {
         node.status = newStatus;
+    }
+
+    updateGeneralNodeStepNumber(node) {
+        node.stepNumber = null;
     }
 }
 

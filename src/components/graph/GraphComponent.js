@@ -27,19 +27,6 @@ function GraphComponent(props) {
             })}
         </div>
     );
-    // return (
-    //     graph.map((innerArray) => {
-    //         return
-    //         <Row>
-    //             {innerArray.map((node) => {
-    //                 return
-    //                 <Column>
-    //                      <text>test</text>
-    //                 </Column>
-    //             })}
-    //         </Row>
-    //     })
-    // );
 }
 
 export default GraphComponent;

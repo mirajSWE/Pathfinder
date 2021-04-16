@@ -4,8 +4,9 @@ import { StyleSheet, css } from 'aphrodite';
 import SidebarComponent from './components/sidebar/SidebarComponent';
 import HeaderComponent from './components/header/HeaderComponent';
 import './App.css';
-import GraphComponent from "./components/graph/GraphComponent";
 import AlgorithmRunComponent from "./components/graph/AlgorithmRunComponent";
+import DescriptionComponent from "./components/helpers/DescriptionComponent";
+import StepArrowsComponent from "./components/helpers/StepArrowsComponent";
 
 const styles = StyleSheet.create({
     container: {
@@ -151,6 +152,12 @@ class App extends React.Component {
                         }>
                             Clear
                         </button>
+                    </div>
+                    <div>
+                        <DescriptionComponent algorithmToRun={algorithmToRun} />
+                    </div>
+                    <div>
+                        <StepArrowsComponent/>
                     </div>
                 </Column>
             </Row>
