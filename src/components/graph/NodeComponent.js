@@ -11,6 +11,7 @@ function NodeComponent(props) {
 
     useEffect(() => {
         setStatus(node.status);
+        setStepNumber(node.stepNumber);
     });
 
     const setStateNodeStatus = (stateNode, newStatus) => {

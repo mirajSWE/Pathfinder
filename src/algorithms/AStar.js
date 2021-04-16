@@ -47,7 +47,7 @@ class AStar {
 
             this.closedList.add(nextNode);
 
-            this.updateGeneralNodeStepNumber(nextNode.generalNode, this.routeSteps.length);
+            this.updateGeneralNodeStepNumber(nextNode.generalNode, this.routeSteps.length + 1);
 
             this.routeSteps.push(nextNode);
 
