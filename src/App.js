@@ -145,6 +145,25 @@ class App extends React.Component {
                         }>
                             DStar
                         </button>
+                        
+                        <button onClick={() =>
+                            this.setState({
+                                algorithmToRun: null
+                            })
+                        }>
+                            Dijikstras
+                        </button>
+
+
+                          <button onClick={() =>
+                            this.setState({
+                                algorithmToRun: null
+                            })
+                        }>
+                            //DFS
+                        </button>
+
+
                         <button onClick={() =>
                             this.setState({
                                 algorithmToRun: null
@@ -152,6 +171,7 @@ class App extends React.Component {
                         }>
                             Clear
                         </button>
+
                     </div>
                     <div>
                         <DescriptionComponent algorithmToRun={algorithmToRun} />
