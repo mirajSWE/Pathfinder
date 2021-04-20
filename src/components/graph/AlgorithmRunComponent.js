@@ -7,6 +7,7 @@ import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
 
     const [graph, setGraph] = useState(props.graph);
+    const [step, setStep] = useState(props.appStep)
     // const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
     // clearGraph.clearGraph();
     let runtime = 0;
@@ -25,6 +26,7 @@ function AlgorithmRunComponent(props) {
     }
 
     useEffect(() => {
+        setStep(props.appStep);
         // console.log('test');
         // console.log(algorithmToRun);
         // if (algorithmToRun === 'AStar') {
@@ -44,7 +46,7 @@ function AlgorithmRunComponent(props) {
     return (
         <Row>
             <div>
-                <GraphComponent graph={graph}/>
+                <GraphComponent graph={graph} appStep={step}/>
             </div>
             <div>
                 <text>

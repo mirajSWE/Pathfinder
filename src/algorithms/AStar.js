@@ -11,6 +11,7 @@ class AStar {
         this.closedList = new Set();
         this.aStarGraph = [];
         this.routeSteps = [];
+        this.forbiddenStatuses = [2, 3, 4, 5]
     }
 
     /**
@@ -47,7 +48,12 @@ class AStar {
 
             this.closedList.add(nextNode);
 
-            this.updateGeneralNodeStepNumber(nextNode.generalNode, this.routeSteps.length + 1);
+            const stepNumber = this.routeSteps.length + 1;
+            this.updateGeneralNodeStepNumber(nextNode.generalNode, stepNumber);
+            this.openList.forEach((node) => {
+                this.updateGeneralNode(node.generalNode, 2);
+               this.updateGeneralNodeStepNumber(node.generalNode, stepNumber);
+            });
 
             this.routeSteps.push(nextNode);
 
@@ -84,19 +90,19 @@ class AStar {
             for (let j = currentNode.generalNode.y - 1; j <= currentNode.generalNode.y + 1; j++) {
                 if (this.isNodeInBounds(i, j)) {
                     const nodeToCheck = this.aStarGraph[i][j];
-                    if (this.openList.has(nodeToCheck)) {
-                        const newCostToCheck = this.calculateBaseCostHeuristic(nodeToCheck.generalNode) + currentNode.parentNode.distanceFromStart + 1;
-                        if (newCostToCheck < nodeToCheck.cost) {
-                            nodeToCheck.nodeParent = currentNode;
-                            nodeToCheck.cost = newCostToCheck;
-                        }
-                    } else {
-                        if (nodeToCheck.generalNode.status !== 4 && !this.closedList.has(nodeToCheck)) {
-                            nodeToCheck.parentNode = currentNode;
-                            nodeToCheck.cost = this.calculateBaseCostHeuristic(nodeToCheck.generalNode) + nodeToCheck.parentNode.distanceFromStart + 1;
-                            this.openList.add(nodeToCheck);
-                        }
+                    // if (this.openList.has(nodeToCheck)) {
+                    //     const newCostToCheck = this.calculateBaseCostHeuristic(nodeToCheck.generalNode) + currentNode.parentNode.distanceFromStart + 1;
+                    //     if (newCostToCheck < nodeToCheck.cost) {
+                    //         nodeToCheck.nodeParent = currentNode;
+                    //         nodeToCheck.cost = newCostToCheck;
+                    //     }
+                    // } else {
+                    if (!this.forbiddenStatuses.includes(nodeToCheck.generalNode.status) &&  !this.closedList.has(nodeToCheck)) {
+                        nodeToCheck.parentNode = currentNode;
+                        nodeToCheck.cost = this.calculateBaseCostHeuristic(nodeToCheck.generalNode) + nodeToCheck.parentNode.distanceFromStart + 1;
+                        this.openList.add(nodeToCheck);
                     }
+                    // }
                 }
             }
         }
@@ -112,17 +118,10 @@ class AStar {
     }
 
     isNodeInBounds(x, y) {
-        // const leftBoundary = 0;
-        // const bottomBoundary = 0;
-        // const topBoundary = this.generalGraph[0].length;
-        // const rightBoundary = this.generalGraph.length;
         if (typeof this.aStarGraph[x] === 'undefined' || typeof this.aStarGraph[x][y] === 'undefined') {
             return false;
         }
         return true;
-        //
-        // if (x >= leftBoundary && x <= rightBoundary && y > bottomBoundary && y < topBoundary) {
-        //     return true;
     }
 
     /**

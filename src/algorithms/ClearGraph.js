@@ -11,11 +11,10 @@ class ClearGraph {
         this.generalGraph.forEach((row) => {
             row.forEach((node) => {
                 this.updateGeneralNodeStatus(node, 1);
+                this.updateGeneralNodeStepNumber(node);
             });
         });
         this.updateGeneralNodeStatus(this.startNode, 5);
-        this.updateGeneralNodeStepNumber(this.startNode);
-        this.updateGeneralNodeStepNumber(this.endNode);
         this.updateGeneralNodeStatus(this.endNode, 6);
     }
 

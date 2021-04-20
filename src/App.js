@@ -29,6 +29,7 @@ class App extends React.Component {
         this.state = {
             selectedItem: 'Step by Step',
             graph: this.populateGraph(10, 10),
+            step: null,
         }
     }
 
@@ -81,6 +82,24 @@ class App extends React.Component {
         return graph[xIndex][yIndex].status;
     }
 
+    incrementStepCounter(isUp) {
+        let {step} = this.state;
+        if (step === null) {
+            step = -1;
+        }
+        console.log(step);
+        if (isUp) {
+            step++;
+        } else {
+            if (step >= 1) {
+                step--;
+            }
+        }
+        this.setState({
+            step: step,
+        });
+    }
+
     // toggleNodeBlockade(node) {
     //     console.log(node);
     //
@@ -109,8 +128,8 @@ class App extends React.Component {
     // }
 
     render() {
-        const { selectedItem, graph, algorithmToRun } = this.state;
-        console.log(algorithmToRun);
+        const { selectedItem, graph, algorithmToRun, step } = this.state;
+        console.log(selectedItem);
 
         // Set blockade nodes
         // this.setNodeStatus(5, 5, 4);
@@ -129,7 +148,7 @@ class App extends React.Component {
                 <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
                 <Column flexGrow={1} className={css(styles.mainBlock)}>
                     <HeaderComponent title={selectedItem} />
-                    <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun}/>
+                    <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun} appStep={step}/>
                     <div>
                         <button onClick={() =>
                             this.setState({
@@ -157,7 +176,7 @@ class App extends React.Component {
                         <DescriptionComponent algorithmToRun={algorithmToRun} />
                     </div>
                     <div>
-                        <StepArrowsComponent/>
+                        <StepArrowsComponent stepNumber={step} onClick={(e) => this.incrementStepCounter(e)}/>
                     </div>
                 </Column>
             </Row>
