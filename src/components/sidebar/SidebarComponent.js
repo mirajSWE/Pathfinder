@@ -33,8 +33,8 @@ function SidebarComponent(props) {
                 />
                 <MenuItemComponent
                     title="Step By Step"
-                    onClick={() => props.onChange('Tickets')}
-                    active={props.selectedItem === 'Tickets'}
+                    onClick={() => props.onChange('Step by Step')}
+                    active={props.selectedItem === 'Step by Step'}
                 />
                 <MenuItemComponent
                     title="Glossary"
