@@ -7,6 +7,7 @@ import './App.css';
 import AlgorithmRunComponent from "./components/graph/AlgorithmRunComponent";
 import DescriptionComponent from "./components/helpers/DescriptionComponent";
 import StepArrowsComponent from "./components/helpers/StepArrowsComponent";
+import GlossaryComponent from "./components/helpers/GlossaryComponent";
 
 const styles = StyleSheet.create({
     container: {
@@ -29,6 +30,7 @@ class App extends React.Component {
         this.state = {
             selectedItem: 'Step by Step',
             graph: this.populateGraph(10, 10),
+            step: null,
         }
     }
 
@@ -71,6 +73,16 @@ class App extends React.Component {
         return graph;
     }
 
+    populateGlossary() {
+        const glossaryNodes = [];
+
+        for (let index = 1; index < 7; index++) {
+            glossaryNodes[index - 1] = this.node(0,0, index, null);
+        }
+
+        return glossaryNodes;
+    }
+
     setNodeStatus(xIndex, yIndex, newStatus) {
         const {graph} = this.state;
         graph[xIndex][yIndex].status = newStatus;
@@ -81,84 +93,76 @@ class App extends React.Component {
         return graph[xIndex][yIndex].status;
     }
 
-    // toggleNodeBlockade(node) {
-    //     console.log(node);
-    //
-    //     if (node.status === 4) {
-    //         node.status = 1;
-    //         // RUN ALGORITHM AGAIN? OR WILL IT RE RENDER
-    //     } else {
-    //         node.status = 4;
-    //     }
-    // }
-
-    // runAlgorithm(stringAlgo) {
-    //     const {graph} = this.state;
-    //     let runTime = 0;
-    //     if (stringAlgo === 'AStar') {
-    //         const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
-    //         runTime = aStarAlgo.runAlgorithm();
-    //         this.setState({
-    //             runTime: runTime,
-    //         });
-    //         this.forceUpdate();
-    //     }
-    //     // const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
-    //
-    //     return runTime;
-    // }
+    incrementStepCounter(isUp) {
+        let {step} = this.state;
+        if (step === null) {
+            step = -1;
+        }
+        if (isUp) {
+            step++;
+        } else {
+            if (step >= 1) {
+                step--;
+            }
+        }
+        this.setState({
+            step: step,
+        });
+    }
 
     render() {
-        const { selectedItem, graph, algorithmToRun } = this.state;
-        console.log(algorithmToRun);
+        const { selectedItem, graph, algorithmToRun, step } = this.state;
 
-        // Set blockade nodes
-        // this.setNodeStatus(5, 5, 4);
-        // this.setNodeStatus(5, 4, 4);
-        // this.setNodeStatus(5, 3, 4);
-        // this.setNodeStatus(5, 7, 4);
-        // // this.setNodeStatus(5, 6, 4);
-        // this.setNodeStatus(0, 0, 5);
-        // this.setNodeStatus(9, 9, 6);
-        // const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
-        // dStarAlgo.runAlgorithm();
-        // const runTime = this.runAlgorithm();
+        const AlgorithmDescription =
+            <container style={{position: 'absolute', left: '40%', top: '20%'}}>
+                <DescriptionComponent algorithmToRun={'Instructions'}/>
+            </container>
+
+        const AlgorithmTools =
+            <container style={{position: 'absolute', left: '40%', top: '20%'}}>
+                <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun} appStep={step}/>
+                <div>
+                    <button onClick={() =>
+                        this.setState({
+                            algorithmToRun: 'AStar'
+                        })
+                    }>
+                        Run AStar
+                    </button>
+                    <button onClick={() =>
+                        this.setState({
+                            algorithmToRun: 'DStar'
+                        })
+                    }>
+                        Run DStar
+                    </button>
+                    <button onClick={() =>
+                        this.setState({
+                            algorithmToRun: null
+                        })
+                    }>
+                        Clear
+                    </button>
+                </div>
+                <div>
+                    <DescriptionComponent algorithmToRun={algorithmToRun} />
+                </div>
+                <div>
+                    <StepArrowsComponent stepNumber={step} onClick={(e) => this.incrementStepCounter(e)}/>
+                </div>
+            </container>;
+
+        const Glossary = <GlossaryComponent nodes={this.populateGlossary()}/>
+
+        const PageWrapper =
+            (selectedItem === 'Instructions') ? AlgorithmDescription : (selectedItem === 'Step by Step') ? AlgorithmTools : Glossary;
 
         return (
             <Row className={css(styles.container)}>
                 <SidebarComponent selectedItem={selectedItem} onChange={(selectedItem) => this.setState({ selectedItem })} />
                 <Column flexGrow={1} className={css(styles.mainBlock)}>
                     <HeaderComponent title={selectedItem} />
-                    <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun}/>
-                    <div>
-                        <button onClick={() =>
-                            this.setState({
-                                algorithmToRun: 'AStar'
-                            })
-                        }>
-                            AStar
-                        </button>
-                        <button onClick={() =>
-                            this.setState({
-                                algorithmToRun: 'DStar'
-                            })
-                        }>
-                            DStar
-                        </button>
-                        <button onClick={() =>
-                            this.setState({
-                                algorithmToRun: null
-                            })
-                        }>
-                            Clear
-                        </button>
-                    </div>
-                    <div>
-                        <DescriptionComponent algorithmToRun={algorithmToRun} />
-                    </div>
-                    <div>
-                        <StepArrowsComponent/>
-                    </div>
+                    {PageWrapper}
                 </Column>
             </Row>
         );

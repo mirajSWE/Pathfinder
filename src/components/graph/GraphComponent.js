@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NodeComponent from "./NodeComponent";
 import { Column, Row } from 'simple-flexbox';
 
 function GraphComponent(props) {
 
     const [graph, setGraph] = useState(props.graph);
-    console.log(graph);
+    const [step, setStep] = useState(props.appStep);
+
+    useEffect(() => {
+        setStep(props.appStep);
+    });
 
     // const { graph, nodeOnClick, ...otherProps } = props;
     // const xSize = graph.length;
@@ -18,7 +22,7 @@ function GraphComponent(props) {
                         {innerArray.map((node) => {
                             return (
                                 <Column style= {{ width: 50, height: 50 }}>
-                                    <NodeComponent node={node}/>
+                                    <NodeComponent node={node} appStep={step}/>
                                 </Column>
                             )
                         })}

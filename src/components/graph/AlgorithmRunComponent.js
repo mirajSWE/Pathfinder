@@ -7,35 +7,37 @@ import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
 
     const [graph, setGraph] = useState(props.graph);
+    const [step, setStep] = useState(props.appStep)
     // const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
     // clearGraph.clearGraph();
     let runtime = 0;
     if (props.algorithmToRun === 'AStar') {
-        const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
-        runtime = aStarAlgo.runAlgorithm();
+        if (!localStorage.getItem('AStarRunTime')) {
+            const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
+            runtime = aStarAlgo.runAlgorithm();
+            localStorage.setItem('AStarRunTime', runtime.toString());
+        } else {
+            runtime = localStorage.getItem('AStarRunTime');
+        }
     }
     if (props.algorithmToRun === 'DStar') {
-        const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
-        runtime = dStarAlgo.runAlgorithm();
+        if (!localStorage.getItem('DStarRunTime')) {
+            const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
+            runtime = dStarAlgo.runAlgorithm();
+            // localStorage.setItem('DStarRunTime', runtime);
+        } else {
+            runtime = localStorage.getItem('DStarRunTime');
+        }
     }
     if (!props.algorithmToRun) {
         const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
         clearGraph.clearGraph();
+        localStorage.clear();
         runtime = 0;
     }
 
     useEffect(() => {
-        // console.log('test');
-        // console.log(algorithmToRun);
-        // if (algorithmToRun === 'AStar') {
-        //     let runTime = 0;
-        //     const aStarAlgo = new AStar(graph[0][0], graph[9][9], graph);
-        //     aStarAlgo.runAlgorithm();
-        //     console.log('test');
-        // } else if (algorithmToRun === 'DStar') {
-        //     const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
-        //     dStarAlgo.runAlgorithm();
-        // }
+        setStep(props.appStep);
     });
 
     // const { graph, nodeOnClick, ...otherProps } = props;
@@ -44,7 +46,7 @@ function AlgorithmRunComponent(props) {
     return (
         <Row>
             <div>
-                <GraphComponent graph={graph}/>
+                <GraphComponent graph={graph} appStep={step}/>
             </div>
             <div>
                 <text>

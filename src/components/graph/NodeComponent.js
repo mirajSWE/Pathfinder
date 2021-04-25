@@ -8,10 +8,16 @@ function NodeComponent(props) {
     const [cost, setCost] = useState(node.cost);
     let [stepNumber, setStepNumber] = useState(node.stepNumber);
     const [stateNode, _setStateNode] = useState(node);
+    const [appStep, setAppStep] = useState(props.appStep);
+    let [displayStep, setDisplayStep] = useState(true);
 
     useEffect(() => {
         setStatus(node.status);
         setStepNumber(node.stepNumber);
+        setAppStep(props.appStep);
+        if (status != 6) {
+            setDisplayStep(appStep >= stepNumber);
+        }
     });
 
     const setStateNodeStatus = (stateNode, newStatus) => {
@@ -19,13 +25,6 @@ function NodeComponent(props) {
 
         _setStateNode(stateNode);
     }
-
-    // * status = 1 means it is an open, unconsidered node
-    // * status = 2 means it is an open, already considered node
-    // * status = 3 means it is a node taken for the path
-    // * status = 4 means it is a blockade
-    // * status = 5 means it is a start block
-    // * status = 6 means it is the destination
 
     function toggleNodeBlockade(e) {
         e.preventDefault()
@@ -41,11 +40,10 @@ function NodeComponent(props) {
     }
 
     let color = '#FFFFFF'
+
     if (status === 1) {
-        stepNumber = null;
     } else if (status === 2) {
         color = '#5BC1B3'
-        stepNumber = null;
     } else if (status === 3) {
         color = '#08730A'
     } else if (status === 4) {
@@ -55,12 +53,20 @@ function NodeComponent(props) {
     } else if (status === 6) {
         color = '#160CCC'
     }
+
+    const nodeDisplay = (displayStep) ?
+        <rect x="0" y="0" width="50" height="50" style={{fill: color, stroke:'#000000'}} onClick={(e) => toggleNodeBlockade(e)}/> :
+        <rect x="0" y="0" width="50" height="50" style={{fill: '#FFFFFF', stroke:'#000000'}} onClick={(e) => toggleNodeBlockade(e)}/>;
+
+
+    const stepDisplay = (displayStep) ? <text x="25" y="25" fill="black">{stepNumber}</text> : null;
+
     return (
-        <svg>
+        <svg  style={{width: '50px', height: '50px'}}>
             <g>
-                <rect x="0" y="0" width="50" height="50" style={{fill: color, stroke:'#000000'}} onClick={(e) => toggleNodeBlockade(e)}/>
-                <text x="25" y="25" fill="black">{stepNumber}</text>
-                <text x="25" y="50" fill="black">{cost}</text>
+                {nodeDisplay}
+                {stepDisplay}
+                {/*<text x="25" y="50" fill="black">{cost}</text>*/}
             </g>
         </svg>
     );
