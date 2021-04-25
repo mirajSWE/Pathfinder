@@ -7,6 +7,7 @@ import './App.css';
 import AlgorithmRunComponent from "./components/graph/AlgorithmRunComponent";
 import DescriptionComponent from "./components/helpers/DescriptionComponent";
 import StepArrowsComponent from "./components/helpers/StepArrowsComponent";
+import GlossaryComponent from "./components/helpers/GlossaryComponent";
 
 const styles = StyleSheet.create({
     container: {
@@ -72,6 +73,16 @@ class App extends React.Component {
         return graph;
     }
 
+    populateGlossary() {
+        const glossaryNodes = [];
+
+        for (let index = 1; index < 7; index++) {
+            glossaryNodes[index - 1] = this.node(0,0, index, null);
+        }
+
+        return glossaryNodes;
+    }
+
     setNodeStatus(xIndex, yIndex, newStatus) {
         const {graph} = this.state;
         graph[xIndex][yIndex].status = newStatus;
@@ -87,7 +98,6 @@ class App extends React.Component {
         if (step === null) {
             step = -1;
         }
-        console.log(step);
         if (isUp) {
             step++;
         } else {
@@ -102,13 +112,10 @@ class App extends React.Component {
 
     render() {
         const { selectedItem, graph, algorithmToRun, step } = this.state;
-        console.log(selectedItem);
 
         const AlgorithmDescription =
             <container style={{position: 'absolute', left: '40%', top: '20%'}}>
-                <text>
-                    test
-                </text>
+                <DescriptionComponent algorithmToRun={'Instructions'}/>
             </container>
 
         const AlgorithmTools =
@@ -145,8 +152,10 @@ class App extends React.Component {
                 </div>
             </container>;
 
+        const Glossary = <GlossaryComponent nodes={this.populateGlossary()}/>
+
         const PageWrapper =
-            (selectedItem === 'Algorithms') ? AlgorithmDescription : (selectedItem === 'Step by Step') ? AlgorithmTools : <text>glossary</text>;
+            (selectedItem === 'Instructions') ? AlgorithmDescription : (selectedItem === 'Step by Step') ? AlgorithmTools : Glossary;
 
         return (
             <Row className={css(styles.container)}>

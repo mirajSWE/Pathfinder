@@ -15,7 +15,6 @@ function NodeComponent(props) {
         setStatus(node.status);
         setStepNumber(node.stepNumber);
         setAppStep(props.appStep);
-        console.log(stepNumber, appStep);
         if (status != 6) {
             setDisplayStep(appStep >= stepNumber);
         }
@@ -26,13 +25,6 @@ function NodeComponent(props) {
 
         _setStateNode(stateNode);
     }
-
-    // * status = 1 means it is an open, unconsidered node
-    // * status = 2 means it is an open, already considered node
-    // * status = 3 means it is a node taken for the path
-    // * status = 4 means it is a blockade
-    // * status = 5 means it is a start block
-    // * status = 6 means it is the destination
 
     function toggleNodeBlockade(e) {
         e.preventDefault()
@@ -46,8 +38,6 @@ function NodeComponent(props) {
             setStateNodeStatus(node, 4);
         }
     }
-    // console.log(appStep);
-    // console.log(displayStep);
 
     let color = '#FFFFFF'
 
@@ -72,7 +62,7 @@ function NodeComponent(props) {
     const stepDisplay = (displayStep) ? <text x="25" y="25" fill="black">{stepNumber}</text> : null;
 
     return (
-        <svg>
+        <svg  style={{width: '50px', height: '50px'}}>
             <g>
                 {nodeDisplay}
                 {stepDisplay}

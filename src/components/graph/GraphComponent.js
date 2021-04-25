@@ -6,8 +6,7 @@ function GraphComponent(props) {
 
     const [graph, setGraph] = useState(props.graph);
     const [step, setStep] = useState(props.appStep);
-    console.log(graph);
-    console.log(props.appStep);
+
     useEffect(() => {
         setStep(props.appStep);
     });

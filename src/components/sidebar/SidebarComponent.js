@@ -27,12 +27,12 @@ function SidebarComponent(props) {
             <LogoComponent />
             <Column className={css(styles.menuItemList)}>
                 <MenuItemComponent
-                    title="Algorithms" 
-                    onClick={() => props.onChange('Algorithms')}
-                    active={props.selectedItem === 'Algorithms'}
+                    title="Instructions"
+                    onClick={() => props.onChange('Instructions')}
+                    active={props.selectedItem === 'Instructions'}
                 />
                 <MenuItemComponent
-                    title="Step By Step"
+                    title="Step By Step Algorithms"
                     onClick={() => props.onChange('Step by Step')}
                     active={props.selectedItem === 'Step by Step'}
                 />
@@ -41,10 +41,6 @@ function SidebarComponent(props) {
                     onClick={() => props.onChange('Glossary')}
                     active={props.selectedItem === 'Glossary'} />
                 <div className={css(styles.separator)}></div>
-                <MenuItemComponent
-                    title="About Us"
-                    onClick={() => props.onChange('About Us')}
-                    active={props.selectedItem === 'About Us'} />
             </Column>
         </Column>
     );
