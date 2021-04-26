@@ -10,6 +10,7 @@ function NodeComponent(props) {
     const [stateNode, _setStateNode] = useState(node);
     const [appStep, setAppStep] = useState(props.appStep);
     let [displayStep, setDisplayStep] = useState(true);
+    const [distance, setDistance] = useState(node.distance);
 
     useEffect(() => {
         setStatus(node.status);
