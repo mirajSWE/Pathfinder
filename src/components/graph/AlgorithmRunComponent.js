@@ -31,9 +31,12 @@ function AlgorithmRunComponent(props) {
     }
     if (props.algorithmToRun === 'Dijkstra') {
         if (!localStorage.getItem('DijkstraRunTime')) {   
-            const dijkstraAlgo = new Dijkstra(graph[0][0], graph[9][9], graph);
-            // runtime = dijkstraAlgo.runAlgorithm();
-            // localStorage.setItem('DijkstraRunTime', runtime.toString());
+            const start = performance.now()
+            new Dijkstra(graph[0][0], graph[9][9], graph);
+            const end = performance.now()
+            
+            runtime = (end - start)
+            localStorage.setItem('DijkstraRunTime', runtime);
         } else {
             runtime = localStorage.getItem('DijkstraRunTime');
         }
