@@ -3,9 +3,9 @@ import GraphComponent from "./GraphComponent";
 import { Column, Row } from 'simple-flexbox';
 import AStar from "../../algorithms/AStar";
 import DStar from "../../algorithms/DStar";
+import Dijkstra from "../../algorithms/dijkstra";
 import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
-
     const [graph, setGraph] = useState(props.graph);
     const [step, setStep] = useState(props.appStep)
     // const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
@@ -27,6 +27,18 @@ function AlgorithmRunComponent(props) {
             // localStorage.setItem('DStarRunTime', runtime);
         } else {
             runtime = localStorage.getItem('DStarRunTime');
+        }
+    }
+    if (props.algorithmToRun === 'Dijkstra') {
+        if (!localStorage.getItem('DijkstraRunTime')) {   
+            const start = performance.now()
+            new Dijkstra(graph[0][0], graph[9][9], graph);
+            const end = performance.now()
+            
+            runtime = (end - start)
+            localStorage.setItem('DijkstraRunTime', runtime);
+        } else {
+            runtime = localStorage.getItem('DijkstraRunTime');
         }
     }
     if (!props.algorithmToRun) {

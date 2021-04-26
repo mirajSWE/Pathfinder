@@ -47,13 +47,16 @@ class App extends React.Component {
      * status = 6 means it is an end block
      * @returns {{x: *, y: *, status: *}}
      */
-    node(x, y, status, stepNumber, cost) {
+    node(x, y, status, stepNumber, cost, distance) {
         const node = {
             x: x,
             y: y,
             status: status,
             stepNumber: stepNumber,
             cost: cost,
+            distance: Infinity,
+            isVisited: false,
+            previousNode: null
         }
         return node;
     }
@@ -122,6 +125,13 @@ class App extends React.Component {
             <container style={{position: 'absolute', left: '40%', top: '20%'}}>
                 <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun} appStep={step}/>
                 <div>
+                    <button onClick={() =>
+                        this.setState({
+                            algorithmToRun: 'Dijkstra'
+                        })
+                    }>
+                        Run Dijkstra
+                    </button>
                     <button onClick={() =>
                         this.setState({
                             algorithmToRun: 'AStar'
