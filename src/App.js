@@ -56,7 +56,9 @@ class App extends React.Component {
             cost: cost,
             distance: Infinity,
             isVisited: false,
-            previousNode: null
+            previousNode: null,
+            box: false,
+         
         }
         return node;
     }
