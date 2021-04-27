@@ -18,6 +18,8 @@ class BFS {
             const currentNode = jsQueue.shift();
             stepCounter += 1;
            
+            if (currentNode === endNode) return; //reuturn jsQueue maybe?
+            
             if (currentNode.status !==4)
             {
               currentNode.visitNode = true;
