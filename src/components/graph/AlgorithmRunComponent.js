@@ -4,6 +4,7 @@ import { Column, Row } from 'simple-flexbox';
 import AStar from "../../algorithms/AStar";
 import DStar from "../../algorithms/DStar";
 import Dijkstra from "../../algorithms/dijkstra";
+import BFS from "../../algorithms/BFS";
 import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
     const [graph, setGraph] = useState(props.graph);
