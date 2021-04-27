@@ -22,9 +22,12 @@ function AlgorithmRunComponent(props) {
     }
     if (props.algorithmToRun === 'DStar') {
         if (!localStorage.getItem('DStarRunTime')) {
+            const start = performance.now()
             const dStarAlgo = new DStar(graph[0][0], graph[9][9], graph);
-            runtime = dStarAlgo.runAlgorithm();
-            // localStorage.setItem('DStarRunTime', runtime);
+            dStarAlgo.runAlgorithm();
+            const end = performance.now()
+            runtime = (end - start)
+            localStorage.setItem('DStarRunTime', runtime);
         } else {
             runtime = localStorage.getItem('DStarRunTime');
         }

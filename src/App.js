@@ -30,7 +30,7 @@ class App extends React.Component {
         this.state = {
             selectedItem: 'Step by Step',
             graph: this.populateGraph(10, 10),
-            step: null,
+            step: 0,
         }
     }
 
@@ -125,33 +125,40 @@ class App extends React.Component {
             <container style={{position: 'absolute', left: '40%', top: '20%'}}>
                 <AlgorithmRunComponent graph={graph} algorithmToRun={algorithmToRun} appStep={step}/>
                 <div>
-                    <button onClick={() =>
+                    <button style={{width: '100px'}} onClick={() =>
                         this.setState({
                             algorithmToRun: 'Dijkstra'
                         })
                     }>
-                        Run Dijkstra
+                        <b>Run Dijkstra</b>
                     </button>
-                    <button onClick={() =>
+                    <button style={{width: '100px'}} onClick={() =>
                         this.setState({
                             algorithmToRun: 'AStar'
                         })
                     }>
-                        Run AStar
+                        <b>Run AStar</b>
                     </button>
-                    <button onClick={() =>
+                    <button style={{width: '100px'}} onClick={() =>
                         this.setState({
                             algorithmToRun: 'DStar'
                         })
                     }>
-                        Run DStar
+                        <b>Run DStar</b>
                     </button>
-                    <button onClick={() =>
+                    <button style={{width: '100px'}} onClick={() =>
+                        this.setState({
+                            algorithmToRun: 'BFS'
+                        })
+                    }>
+                        <b>Run BFS</b>
+                    </button>
+                    <button style={{width: '100px', background: 'red'}} onClick={() =>
                         this.setState({
                             algorithmToRun: null
                         })
                     }>
-                        Clear
+                        <b>Clear</b>
                     </button>
                 </div>
                 <div>

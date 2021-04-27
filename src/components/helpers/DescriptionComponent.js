@@ -7,11 +7,11 @@ function DescriptionComponent(props) {
     if (props.algorithmToRun === 'AStar') {
         textDescription = 'AStar is a greedy algorithm that makes decisions based on the cost heuristic in picking the lowest cost node each cycle';
     } else if (props.algorithmToRun === 'DStar') {
-        textDescription = 'DStar does this...';
+        textDescription = 'DStar is a greedy algorithm that uses a cost heuristic, works its way backwards, and saves the state of nodes to react to blockade modifications';
     } else if (props.algorithmToRun === 'BFS') {
-        textDescription = 'BFS does this...';
-    } else if (props.algorithmToRun === 'Dijkstras') {
-        textDescription = 'Dijkstras does this...';
+        textDescription = 'BFS visits each node, branching out from nodes around the starting location first';
+    } else if (props.algorithmToRun === 'Dijkstra') {
+        textDescription = 'Dijkstra’s algorithm finds the shortest path between all the nodes from the source node';
     } else if (props.algorithmToRun === 'Instructions') {
         textDescription =
             <div style={{position: 'flex', justifyContent: 'left', alignItems: 'left'}}>

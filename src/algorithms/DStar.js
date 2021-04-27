@@ -27,31 +27,20 @@ class DStar {
 
     runAlgorithm() {
         this.createDStarGraphMask();
-        console.log(this.dStarGraph);
         const destinationNode = this.dStarGraph[this.startGeneralNode.x][this.startGeneralNode.y];
         // Let's grab the 'end' node, the one we start at, and mark it as our first node in the list
         let lastNode = this.dStarGraph[this.endGeneralNode.x][this.endGeneralNode.y]
         this.updateDStarNodeStatus(lastNode, 'CLOSED')
 
         this.refreshAndPopulateOpenList(this.dStarGraph[this.endGeneralNode.x][this.endGeneralNode.y]);
-        console.log(this.openList);
         while (this.openList.length > 0 && lastNode !== destinationNode) {
             let nextNode = this.pickSmallestCostFromOpenList();
             nextNode.backTrackPointer = lastNode;
             this.updateGeneralNode(nextNode.generalNode, 3);
-            console.log(nextNode);
             this.refreshAndPopulateOpenList(nextNode);
             lastNode = nextNode;
         }
         console.log('fin!');
-
-        // console.log(this.openList);
-        //
-        // this.updateGeneralNode(this.graph[2][2], 4);
-
-        // while (this.openList.length > 0) {
-        //     // do
-        // }
     }
 
     /**
@@ -101,19 +90,10 @@ class DStar {
     }
 
     isNodeInBounds(x, y) {
-        // const leftBoundary = 0;
-        // const bottomBoundary = 0;
-        // const topBoundary = this.generalGraph[0].length;
-        // const rightBoundary = this.generalGraph.length;
-        console.log(x, y);
         if (typeof this.dStarGraph[x] === 'undefined' || typeof this.dStarGraph[x][y] === 'undefined') {
-            console.log('test');
             return false;
         }
         return true;
-        //
-        // if (x >= leftBoundary && x <= rightBoundary && y > bottomBoundary && y < topBoundary) {
-        //     return true;
     }
 
     /**
