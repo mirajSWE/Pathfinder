@@ -16,6 +16,7 @@ class BFS {
 
         while (jsQueue.length > 0) {
             const currentNode = jsQueue.shift();
+            this.updateGeneralNode(currentNode, 3);
             stepCounter += 1;
            
             if (currentNode === this.endGeneralNode) return; //reuturn jsQueue maybe?
