@@ -44,6 +44,18 @@ function AlgorithmRunComponent(props) {
             runtime = localStorage.getItem('DijkstraRunTime');
         }
     }
+    if (props.algorithmToRun === 'BFS') {
+        if (!localStorage.getItem('BFSRunTime')) {   
+            const start = performance.now()
+            new Dijkstra(graph[0][0], graph[9][9], graph);
+            const end = performance.now()
+            
+            runtime = (end - start)
+            localStorage.setItem('BFSRunTime', runtime);
+        } else {
+            runtime = localStorage.getItem('BFSRunTime');
+        }
+    }
     if (!props.algorithmToRun) {
         const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
         clearGraph.clearGraph();
