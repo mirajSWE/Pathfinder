@@ -9,8 +9,7 @@ import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
     const [graph, setGraph] = useState(props.graph);
     const [step, setStep] = useState(props.appStep)
-    // const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
-    // clearGraph.clearGraph();
+
     let runtime = 0;
     if (props.algorithmToRun === 'AStar') {
         if (!localStorage.getItem('AStarRunTime')) {
@@ -48,7 +47,7 @@ function AlgorithmRunComponent(props) {
     if (props.algorithmToRun === 'BFS') {
         if (!localStorage.getItem('BFSRunTime')) {   
             const start = performance.now()
-            const bfsAlgo = new BFS(graph[0][0], graph[9][9], graph);
+            const bfsAlgo = new BFS2(graph[0][0], graph[9][9], graph);
             bfsAlgo.runAlgorithm();
             const end = performance.now()
             
@@ -69,9 +68,6 @@ function AlgorithmRunComponent(props) {
         setStep(props.appStep);
     });
 
-    // const { graph, nodeOnClick, ...otherProps } = props;
-    // const xSize = graph.length;
-    // const ySize = graph[0].length;
     return (
         <Row>
             <div>

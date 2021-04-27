@@ -90,19 +90,11 @@ class AStar {
             for (let j = currentNode.generalNode.y - 1; j <= currentNode.generalNode.y + 1; j++) {
                 if (this.isNodeInBounds(i, j)) {
                     const nodeToCheck = this.aStarGraph[i][j];
-                    // if (this.openList.has(nodeToCheck)) {
-                    //     const newCostToCheck = this.calculateBaseCostHeuristic(nodeToCheck.generalNode) + currentNode.parentNode.distanceFromStart + 1;
-                    //     if (newCostToCheck < nodeToCheck.cost) {
-                    //         nodeToCheck.nodeParent = currentNode;
-                    //         nodeToCheck.cost = newCostToCheck;
-                    //     }
-                    // } else {
                     if (!this.forbiddenStatuses.includes(nodeToCheck.generalNode.status) &&  !this.closedList.has(nodeToCheck)) {
                         nodeToCheck.parentNode = currentNode;
                         nodeToCheck.cost = this.calculateBaseCostHeuristic(nodeToCheck.generalNode) + nodeToCheck.parentNode.distanceFromStart + 1;
                         this.openList.add(nodeToCheck);
                     }
-                    // }
                 }
             }
         }
@@ -164,8 +156,6 @@ class AStar {
         this.openList.delete(minimumNode);
         minimumNode.distanceFromStart = minimumNode.parentNode.distanceFromStart + 1;
         return minimumNode;
-        // chosenNode.distanceFromStart = chosenNode.parentNode.distanceFromStart + 1;
-        // return chosenNode;
     }
 }
 
