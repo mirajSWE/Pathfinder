@@ -17,19 +17,40 @@ class BFS {
         while (jsQueue.length > 0) {
             const currentNode = jsQueue.shift();
             stepCounter += 1;
+           
+            if (currentNode.status !==4)
+            {
+              currentNode.visitNode = true;
+              jsQueue.push(currentNode);
 
-            for (let i = 0; i <= currentNode.x + 1; i++) {
+              for (let i = 0; i <= currentNode.x + 1; i++) {
                 for (let j = 0; j <= currentNode.y + 1; j++) {
                     if (this.isNodeInBounds(i, j)) {
                         const visitNode = this.generalGraph[i][j];
                         if (visitNode.status === 1) {
-                            this.updateGeneralNode(visitNode, 2);
+                            this.updateGeneralNode(visitNode, );
                             this.updateGeneralNodeStepNumber(visitNode, stepCounter);
                             jsQueue.push(visitNode);
                         }
                     }
                 }
+               }
+            for (let i = 0; i >= currentNode.x - 1; i++) {
+              for (let j = 0; j >= currentNode.y - 1; j++) {
+                  if (this.isNodeInBounds(i, j)) {
+                      const visitNode = this.generalGraph[i][j];
+                      if (visitNode.status === 1) {
+                          this.updateGeneralNode(visitNode, 3); //2 0r 3? 
+                          this.updateGeneralNodeStepNumber(visitNode, stepCounter);
+                          jsQueue.push(visitNode);
+                      }
+                  }
+              }
+             }
             }
+
+       
+          
             console.log(jsQueue.length);
         }
 
