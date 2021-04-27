@@ -12,13 +12,15 @@ class BFS {
         this.runTime = window.performance.now();
         const jsQueue = [];
         jsQueue.push(this.startGeneralNode);
+        console.log(jsQueue);
         let stepCounter = 0;
 
+       /*
         while (jsQueue.length > 0) {
             const currentNode = jsQueue.shift();
             stepCounter += 1;
-           
-            if (currentNode === endNode) return; //reuturn jsQueue maybe?
+           //change below
+            if (currentNode === this.endGeneralNode) return jsQueue; //reuturn jsQueue maybe?
             
             if (currentNode.status !==4)
             {
@@ -50,12 +52,11 @@ class BFS {
               }
              }
             }
-
        
           
             console.log(jsQueue.length);
         }
-
+        */
         // Let's grab the 'end' node, the one we start at, and mark it as our first node in the list
         this.runTime = window.performance.now() - this.runTime;
         console.log(this.runTime);
