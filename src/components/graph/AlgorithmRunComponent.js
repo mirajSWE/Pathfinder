@@ -48,8 +48,8 @@ function AlgorithmRunComponent(props) {
     if (props.algorithmToRun === 'BFS') {
         if (!localStorage.getItem('BFSRunTime')) {   
             const start = performance.now()
-            const BFS2Algo = new BFS2(graph[0][0], graph[9][9], graph);
-            BFS2Algo.runAlgorithm();
+            const bfsAlgo = new BFS(graph[0][0], graph[9][9], graph);
+            bfsAlgo.runAlgorithm();
             const end = performance.now()
             
             runtime = (end - start)
