@@ -18,42 +18,20 @@ class BFS {
             const currentNode = jsQueue.shift();
             stepCounter += 1;
            
-            if (currentNode === endNode) return; //reuturn jsQueue maybe?
-            
-            if (currentNode.status !==4)
-            {
-              currentNode.visitNode = true;
-              jsQueue.push(currentNode);
+            if (currentNode === this.endGeneralNode) return; //reuturn jsQueue maybe?
 
-              for (let i = 0; i <= currentNode.x + 1; i++) {
-                for (let j = 0; j <= currentNode.y + 1; j++) {
+            for (let i = -1 ; i <= currentNode.x + 1; i++) {
+                for (let j = -1 ; j <= currentNode.y + 1; j++) {
                     if (this.isNodeInBounds(i, j)) {
                         const visitNode = this.generalGraph[i][j];
                         if (visitNode.status === 1) {
-                            this.updateGeneralNode(visitNode, );
+                            this.updateGeneralNode(visitNode, 2);
                             this.updateGeneralNodeStepNumber(visitNode, stepCounter);
                             jsQueue.push(visitNode);
                         }
                     }
                 }
-               }
-            for (let i = 0; i >= currentNode.x - 1; i++) {
-              for (let j = 0; j >= currentNode.y - 1; j++) {
-                  if (this.isNodeInBounds(i, j)) {
-                      const visitNode = this.generalGraph[i][j];
-                      if (visitNode.status === 1) {
-                          this.updateGeneralNode(visitNode, 3); //2 0r 3? 
-                          this.updateGeneralNodeStepNumber(visitNode, stepCounter);
-                          jsQueue.push(visitNode);
-                      }
-                  }
-              }
-             }
             }
-
-       
-          
-            console.log(jsQueue.length);
         }
 
         // Let's grab the 'end' node, the one we start at, and mark it as our first node in the list
