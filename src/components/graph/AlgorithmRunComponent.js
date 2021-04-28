@@ -4,7 +4,7 @@ import { Column, Row } from 'simple-flexbox';
 import AStar from "../../algorithms/AStar";
 import DStar from "../../algorithms/DStar";
 import Dijkstra from "../../algorithms/dijkstra";
-import BFS2 from "../../algorithms/BFS2";
+import BFS from "../../algorithms/BFS2";
 import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
     const [graph, setGraph] = useState(props.graph);
@@ -47,7 +47,7 @@ function AlgorithmRunComponent(props) {
     if (props.algorithmToRun === 'BFS') {
         if (!localStorage.getItem('BFSRunTime')) {   
             const start = performance.now()
-            const bfsAlgo = new BFS2(graph[0][0], graph[9][9], graph);
+            const bfsAlgo = new BFS(graph[0][0], graph[9][9], graph);
             bfsAlgo.runAlgorithm();
             const end = performance.now()
             

@@ -16,9 +16,9 @@ class BFS {
 
         while (jsQueue.length > 0) {
             const currentNode = jsQueue.shift();
-            this.updateGeneralNode(currentNode, 3);
+            this.updateGeneralNode(currentNode, 2);
             stepCounter += 1;
-           
+
             if (currentNode === this.endGeneralNode) return; //reuturn jsQueue maybe?
 
             for (let i = -1 ; i <= currentNode.x + 1; i++) {
@@ -28,6 +28,9 @@ class BFS {
                         if (visitNode.status === 1) {
                             this.updateGeneralNode(visitNode, 2);
                             this.updateGeneralNodeStepNumber(visitNode, stepCounter);
+                            if (Math.sqrt(stepCounter) === 1 || Math.sqrt(stepCounter) === 2 || Math.sqrt(stepCounter) === 3 || Math.sqrt(stepCounter) === 4 || Math.sqrt(stepCounter) === 5 || Math.sqrt(stepCounter) === 6 || Math.sqrt(stepCounter) === 7 || Math.sqrt(stepCounter) === 8) {
+                                this.updateGeneralNode(visitNode, 3);
+                            }
                             jsQueue.push(visitNode);
                         }
                     }
