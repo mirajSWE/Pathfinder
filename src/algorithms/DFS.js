@@ -10,16 +10,17 @@ class BFS {
 
     runAlgorithm() {
         this.runTime = window.performance.now();
+        const visited = [];
         const jsQueue = [];
         jsQueue.push(this.startGeneralNode);
         let stepCounter = 0;
 
         while (jsQueue.length > 0) {
-            const currentNode = jsQueue.shift();
+            const currentNode = jsQueue.pop(); // important part
             this.updateGeneralNode(currentNode, 3);
             stepCounter += 1;
            
-            if (currentNode === this.endGeneralNode) return; //reuturn jsQueue maybe?
+            if (currentNode === this.endGeneralNode) return visited;
 
             for (let i = -1 ; i <= currentNode.x + 1; i++) {
                 for (let j = -1 ; j <= currentNode.y + 1; j++) {
@@ -28,7 +29,7 @@ class BFS {
                         if (visitNode.status === 1) {
                             this.updateGeneralNode(visitNode, 2);
                             this.updateGeneralNodeStepNumber(visitNode, stepCounter);
-                            jsQueue.push(visitNode);
+                            visted.push(visitNode);
                         }
                     }
                 }
