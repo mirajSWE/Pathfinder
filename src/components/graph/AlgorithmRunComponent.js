@@ -5,6 +5,7 @@ import AStar from "../../algorithms/AStar";
 import DStar from "../../algorithms/DStar";
 import Dijkstra from "../../algorithms/dijkstra";
 import BFS from "../../algorithms/BFS2";
+//import DFS from "../../algorithms/DFS";
 import ClearGraph from "../../algorithms/ClearGraph";
 function AlgorithmRunComponent(props) {
     const [graph, setGraph] = useState(props.graph);
@@ -57,6 +58,21 @@ function AlgorithmRunComponent(props) {
             runtime = localStorage.getItem('BFSRunTime');
         }
     }
+    /*
+        if (props.algorithmToRun === 'DFS') {
+        if (!localStorage.getItem('DFSRunTime')) {   
+            const start = performance.now()
+            const dfsAlgo = new DFS(graph[0][0], graph[9][9], graph);
+            dfsAlgo.runAlgorithm();
+            const end = performance.now()
+            
+            runtime = (end - start)
+            localStorage.setItem('DFSRunTime', runtime);
+        } else {
+            runtime = localStorage.getItem('DFSRunTime');
+        }
+    }
+    */
     if (!props.algorithmToRun) {
         const clearGraph = new ClearGraph(graph[0][0], graph[9][9], graph);
         clearGraph.clearGraph();
