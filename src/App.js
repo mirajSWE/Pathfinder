@@ -156,6 +156,15 @@ class App extends React.Component {
                     }>
                         <b>Run BFS</b>
                     </button>
+                    /*<button style={{width: '100px'}} onClick={() =>
+                        this.setState({
+                            algorithmToRun: 'DFS',
+                            step: 81,
+                        })
+                    }>
+                        <b>Run DFS</b>
+                      
+                    </button>  */
                     <button style={{width: '100px', background: 'red'}} onClick={() =>
                         this.setState({
                             algorithmToRun: null
