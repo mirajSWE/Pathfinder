@@ -1,6 +1,6 @@
 import React from 'react';
 
-class BFS {
+class DFS {
     constructor(startNode, endNode, graph) {
         this.startGeneralNode = startNode; //starting point
         this.endGeneralNode = endNode; //target
@@ -66,4 +66,4 @@ class BFS {
     }
 }
 
-export default BFS;
+export default DFS;
